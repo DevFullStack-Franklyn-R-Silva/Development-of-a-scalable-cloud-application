@@ -1,4 +1,4 @@
-package com.github.hadesfranklyn.project;
+package com.github.hadesfranklyn.project.model;
 
 public class Greeting {
 	
