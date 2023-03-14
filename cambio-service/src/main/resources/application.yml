@@ -20,3 +20,4 @@ spring:
     schemas: cambio_service
     user: root # In production environment need to change
     password: root # In production environment need to change
+# Se der erro APPLICATION FAILED TO START comente e descomente o pom.xml
