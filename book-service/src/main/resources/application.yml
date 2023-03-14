@@ -8,6 +8,10 @@ spring:
     url: jdbc:mysql://localhost:3306/book_service?useTimezone=true&serverTimezone=UTC
     username: root # In production environment need to change
     password: root # In production environment need to change
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      fail-on-empty-beans: false
   jpa:
     hibernate:
       ddl-auto: update

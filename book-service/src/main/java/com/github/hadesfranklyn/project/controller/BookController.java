@@ -24,14 +24,10 @@ public class BookController {
 	@GetMapping(value = "/{id}/{currency}")
 	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
 
-		 var book = repository.getById(id); 
-//		Optional<Book> bookOptional = repository.findById(id);
-		
-		 if(book == null)throw new RuntimeException("Book not Found");
-//		if (bookOptional.isPresent())
-//			throw new RuntimeException("Book not Found");
-//		Book book = bookOptional.get();
+		var book = repository.getById(id);
 
+		if (book == null)
+			throw new RuntimeException("Book not Found");
 
 		var port = environment.getProperty("local.server.port");
 		book.setEnviroment(port);
