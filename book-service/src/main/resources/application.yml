@@ -3,3 +3,21 @@ server:
 spring:
   application:
     name: book-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/book_service?useTimezone=true&serverTimezone=UTC
+    username: root # In production environment need to change
+    password: root # In production environment need to change
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true # In production disable this because it wastes performance.
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+  flyway:
+    url: jdbc:mysql://localhost:3306/
+    schemas: book_service
+    user: root # In production environment need to change
+    password: root # In production environment need to change
+# Se der erro APPLICATION FAILED TO START comente e descom

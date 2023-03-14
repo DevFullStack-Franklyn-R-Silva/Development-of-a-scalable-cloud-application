@@ -3,28 +3,69 @@ package com.github.hadesfranklyn.project.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
+
+/* 
+ * ------ @JsonIgnoreProperties -------
+ * I used the @JsonIgnoreProperties({“hibernateLazyInitializer”, “handler”}) 
+ * annotation in the Book class to ignore properties that cannot be serialized.
+ * 
+ * ------ @Temporal(TemporalType.DATE) ------
+ * @Temporal(TemporalType.DATE) is an annotation used in Java programming to map a date property from a JPA
+ * (Java Persistence API) entity to the database. The annotation defines the temporal data type that will be 
+ * used to represent the date in the database. 
+ * In this specific case, TemporalType.DATE indicates that only the date (day, month and year) will be stored, 
+ * not including time and time zone information. Other possible values for TemporalType include TemporalType.TIME 
+ * to represent time only, and TemporalType.TIMESTAMP to represent full date and time, including time zone.
+ * Using this annotation is important to ensure that date and time information is correctly mapped and stored 
+ * in the database, and so that it can be retrieved consistently across different time zones and regional settings.
+ */
+@Entity(name = "book")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Book implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "author", nullable = false, length = 180)
 	private String author;
+
+	@Column(name = "launch_date", nullable = false)
+	@Temporal(TemporalType.DATE)
 	private Date launchDate;
+
+	@Column(nullable = false)
 	private Double price;
+
+	@Column(nullable = false, length = 250)
 	private String title;
+
+	@Transient
 	private String currency;
+
+	@Transient
 	private String enviroment;
 
-	
 	// constructors
 	public Book() {
 	}
 
 	public Book(Long id, 
 			String author, 
-			String title, 
-			Date launchDate, 
-			Double price, 
+			String title, Date 
+			launchDate, Double price, 
 			String currency,
 			String enviroment) {
 		this.id = id;
@@ -35,7 +76,7 @@ public class Book implements Serializable {
 		this.currency = currency;
 		this.enviroment = enviroment;
 	}
-	
+
 	// get and set
 	public Long getId() {
 		return id;
@@ -92,7 +133,7 @@ public class Book implements Serializable {
 	public void setEnviroment(String enviroment) {
 		this.enviroment = enviroment;
 	}
-	
+
 	// hash and equals
 	@Override
 	public int hashCode() {
@@ -154,6 +195,5 @@ public class Book implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }
