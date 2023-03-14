@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.hadesfranklyn.project.model.Book;
+import com.github.hadesfranklyn.project.proxy.CambioProxy;
 import com.github.hadesfranklyn.project.repository.BookRepository;
 import com.github.hadesfranklyn.project.response.Cambio;
 
@@ -24,6 +25,27 @@ public class BookController {
 	@Autowired
 	private Environment environment;
 
+	@Autowired
+	private CambioProxy proxy;
+
+	@GetMapping(value = "/{id}/{currency}")
+	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
+
+		@SuppressWarnings("deprecation")
+		var book = repository.getById(id);
+
+		if (book == null)
+			throw new RuntimeException("Book not Found");
+
+		var cambio = proxy.getCambio(book.getPrice(), "USD", currency);
+
+		var port = environment.getProperty("local.server.port");
+		book.setEnviroment(port + " FEING");
+		book.setPrice(cambio.getConvertedValue());
+		return book;
+	}
+	
+	/**
 	// http://localhost:8100/book-service/14/BRL
 	@GetMapping(value = "/{id}/{currency}")
 	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
@@ -49,4 +71,5 @@ public class BookController {
 		book.setPrice(cambio.getConvertedValue());
 		return book;
 	}
+	*/
 }
