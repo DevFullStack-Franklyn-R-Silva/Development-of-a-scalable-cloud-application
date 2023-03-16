@@ -11,6 +11,10 @@ import com.github.hadesfranklyn.project.model.Book;
 import com.github.hadesfranklyn.project.proxy.CambioProxy;
 import com.github.hadesfranklyn.project.repository.BookRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(name = "Book endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
@@ -24,6 +28,7 @@ public class BookController {
 	@Autowired
 	private CambioProxy proxy;
 
+	@Operation(summary = "Find a specific book by your ID")
 	@GetMapping(value = "/{id}/{currency}")
 	public Book findBook(@PathVariable("id") Long id, @PathVariable("currency") String currency) {
 
