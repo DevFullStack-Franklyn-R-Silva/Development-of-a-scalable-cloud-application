@@ -24,4 +24,10 @@ spring:
     schemas: cambio_service
     user: root # In production environment need to change
     password: root # In production environment need to change
-# Se der erro APPLICATION FAILED TO START comente e descomente o pom.xml
+springdoc:
+  show-actuator: true
+  api-docs:
+    path: cambio-service/v3/api-docs
+  swagger-ui:
+    config-url: /cambio-service/v3/api-docs/swagger-config
+    url: /cambio-service/v3/api-docs
