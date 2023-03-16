@@ -65,11 +65,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
-		<dependency>
+		<dependency> <!-- I used this spring boot dependency -->
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
 		</dependency>
-		
+		<!--  This dependency is on the website: https://resilience4j.readme.io/docs/getting-started-3 -->
+		<!--<dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot2</artifactId>
+        </dependency>-->
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
