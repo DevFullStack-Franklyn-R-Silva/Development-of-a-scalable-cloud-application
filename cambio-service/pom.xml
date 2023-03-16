@@ -58,6 +58,11 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency> <!-- https://springdoc.org/v2/#migrating-from-springdoc-v1 -->
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.0.2</version>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
