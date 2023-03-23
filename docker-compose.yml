@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  naming-server:
+    image: hadesfranklyn/naming-server:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+    networks:
+      - hadesfranklyn-network
+networks:
+  hadesfranklyn-network:
+    driver: bridge
