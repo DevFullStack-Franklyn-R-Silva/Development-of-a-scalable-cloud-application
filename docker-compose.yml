@@ -7,6 +7,12 @@ services:
       - 8761:8761
     networks:
       - hadesfranklyn-network
+  zipkin:
+    image: openzipkin/zipkin:2.23.2
+    ports:
+      - 9411:9411
+    networks:
+      - hadesfranklyn-network
 networks:
   hadesfranklyn-network:
     driver: bridge
