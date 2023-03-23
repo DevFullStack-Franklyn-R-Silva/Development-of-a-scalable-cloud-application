@@ -44,6 +44,11 @@ spring:
     schemas: book_service
     user: root # In production environment need to change
     password: root # In production environment need to change
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
 springdoc:
   show-actuator: true
   api-docs:

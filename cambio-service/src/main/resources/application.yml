@@ -31,3 +31,13 @@ springdoc:
   swagger-ui:
     config-url: /cambio-service/v3/api-docs/swagger-config
     url: /cambio-service/v3/api-docs
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  #zipkin: #if you want to change the port
+    #tracing:
+      #endpoint: http://localhost:9411/
+      
+      
+ 
